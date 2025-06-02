@@ -123,9 +123,9 @@ Add these scripts to your `package.json`:
 ```json
 {
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "concurrently \"tsc -w\" \"nodemon dist/index.js\"",
+    "build": "rimraf dist && npx tsc",
+    "start": "npm run build && node dist/index.js",
+    "dev": "npm run build && concurrently \"npx tsc -w \" \"nodemon --exec ts-node src/index.ts\" ",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "test": "echo \"Error: no test specified\" && exit 1"
